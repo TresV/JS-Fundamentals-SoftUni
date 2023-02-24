@@ -9,7 +9,7 @@ function treasureHunt(input) {
 
         switch (command) {
             case "Loot":{
-                for (item of tokens) {
+                for (let item of tokens) {
                     if(!items.includes(item)){
                         items.unshift(item);
                     }
