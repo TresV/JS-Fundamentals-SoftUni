@@ -1,25 +1,23 @@
 function bonusScoringSystem(input) {
-    let arr = input.slice();
-    let studentCount = Number(arr.shift());
-    let lecturesCount = Number(arr.shift());
-    let additionalBonus = Number(arr.shift());
-    let totalAttendence = 0;
-    let totalBonus = 0;
 
-    for (let i = 0; i < arr.length; i++) {
-        let studentAttendance = Number(arr[i]);
-        let bonusCalc = Math.ceil(studentAttendance / lecturesCount * (5 + additionalBonus));
-        if (bonusCalc >= totalBonus) {
-            totalBonus = bonusCalc;
-            totalAttendence = studentAttendance;
-        }
-    }
-    
-    // totalBonus.sort((a,b) => a - b);
-    // let maxBonus = totalBonus.reduce((a, b) => Math.max(a, b), -Infinity);
-    console.log(maxBonus);
-    console.log(`Max Bonus: ${Math.max(...totalBonus)}`); //(...) spread operator
-    console.log(`The student has attended ${lecturesCount} lectures`);
-    // console.log(`Max Bonus: ${Math.ceil(totalBonus)}.\nThe student has attended ${totalAttendence} lectures.`);
+	input = input.map(Number)
+	let students = input.shift();
+	let lectures = input.shift();
+	let intialBonus = input.shift();
+	let maxAttendances = 0
+	let maxBonus = 0
+
+	for (const line of input) {
+		let attendances = line;
+		let bonus = (attendances / lectures) * (5 + intialBonus);
+
+		if (bonus >= maxBonus) {
+			maxBonus = bonus;
+			maxAttendances = attendances
+		}
+	}
+
+	console.log(`Max Bonus: ${Math.ceil(maxBonus)}.\nThe student has attended ${maxAttendances} lectures.`);
+
 }
 bonusScoringSystem(["5", "25", "30", "12", "19", "24", "16", "20"]);
